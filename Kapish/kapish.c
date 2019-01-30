@@ -3,8 +3,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-//#include <unistd.h>
-//#include <sys/wait.h>
+#include <unistd.h>
+#include <sys/wait.h>
 
 #include "DoublyLinkedList.h"
 
@@ -47,21 +47,21 @@ int numBuiltIn(){
         return sizeof(builtInList)/sizeof(char *);
 }
 
-int setEnv(){
-	
+void setEnv(char **args){
+	printf("setEnv");
 }
 
-int unsetEnv(){
-
+void unsetEnv(char **args){
+	printf("unsetEnv");
 }
 
-int exitShell(){
+int exitShell(char **args){
 	return 0;
 }
 
 int kapex(char** args) {
 	int i;
-	for(i=0, i<numBuiltIn(); i++){
+	for(i=0; i<numBuiltIn(); i++){
 		if(strcmp(args[0], builtInList[i])==0){
 			return (*builtInFunc[i])(args);
 		}
