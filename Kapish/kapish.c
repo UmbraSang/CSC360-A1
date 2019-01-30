@@ -10,8 +10,8 @@
 
 #define TOKEN_BUFFER_SIZE 64
 
-int setEnv(char **args);
-int unsetEnv(char **args);
+void setEnv(char **args);
+void unsetEnv(char **args);
 int exitShell(char **args);
 
 char* intakeLine() {
@@ -103,7 +103,7 @@ void argsReader() {
 }
 
 int launch(char** args){
-	pid_t pid, wpid;
+	pid_t pid;
 	int status;
 
 	pid = fork();
