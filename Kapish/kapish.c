@@ -59,8 +59,11 @@ int exitShell(char **args){
 	return 0;
 }
 
-int kapex(char** args) {
+int kapexec(char** args) {
 	int i;
+	if(args[0] == NULL){
+		return 1;
+	}
 	for(i=0; i<numBuiltIn(); i++){
 		if(strcmp(args[0], builtInList[i])==0){
 			return (*builtInFunc[i])(args);
@@ -95,7 +98,7 @@ void argsReader() {
 		input = intakeLine();
 		args = getTokens(input);
 		testPrint(args);
-		status = kapex(listToArray(args));
+		status = kapexec(listToArray(args));
 
 		free(input);
 		free(args);
