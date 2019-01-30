@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "doublylinkedlist.h": "c",
+        "stdio.h": "c"
+    }
+}
