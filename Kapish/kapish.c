@@ -118,7 +118,7 @@ int launch(char** args){
 		perror("bad fork\n");
 	} else{
 		//parent part
-		wpid = wait();
+		//wpid = wait();
 	}
 	return 1;
 }
