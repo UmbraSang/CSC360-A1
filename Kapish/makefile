@@ -3,7 +3,7 @@ CFLAGS=-Wall -Werror
 all: kapish
 
 kapish: kapish.o DoublyLinkedList.o
-	gcc $(CFLAGS) -o kapish kapish.o DoublyLinkedList.o
+	gcc $(CFLAGS) kapish.o DoublyLinkedList.o -o kapish 
 
 kapish.o: kapish.c kapish.h
 	gcc $(CFLAGS) -c kapish.c -I /Kapish/Kapish/DoublyLinkedList.h

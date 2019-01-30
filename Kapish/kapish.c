@@ -10,6 +10,10 @@
 
 #define TOKEN_BUFFER_SIZE 64
 
+int setEnv(char **args);
+int unsetEnv(char **args);
+int exitShell(char **args);
+
 char* intakeLine() {
 	char* line = NULL;
 	size_t buffsize = 0;
@@ -27,14 +31,42 @@ struct List* getTokens(char* input) {
 	return tokarr;
 }
 
+char* builtInList[] = {
+        "setenv",
+        "unsetenv",
+        "exit"
+};
+
+int (*builtInFunc[])(char **) = {
+        &setEnv,
+        &unsetEnv,
+        &exitShell
+};
+
+int numBuiltIn(){
+        return sizeof(builtInList)/sizeof(char *);
+}
+
+int setEnv(){
+	
+}
+
+int unsetEnv(){
+
+}
+
+int exitShell(){
+	return 0;
+}
 
 int kapex(char** args) {
 	int i;
-	for(i=0, i< ; i++){
-		if(strcmp(args[0], )==0){
-
+	for(i=0, i<numBuiltIn(); i++){
+		if(strcmp(args[0], builtInList[i])==0){
+			return (*builtInFunc[i])(args);
 		}
 	}
+	return launch(args);
 }
 
 
@@ -69,7 +101,7 @@ void argsReader() {
 		free(args);
 	} while (status);
 }
-/*
+
 int launch(char** args){
 	pid_t pid, wpid;
 	int status;
@@ -90,7 +122,7 @@ int launch(char** args){
 	}
 	return 1;
 }
-*/
+
 int main(int argc, char **argv) {
 	// Load config files, if any.
 
