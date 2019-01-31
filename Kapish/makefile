@@ -6,10 +6,10 @@ kapish: kapish.o
 	gcc $(CFLAGS) kapish.o -o kapish 
 
 kapish.o: kapish.c kapish.h
-	gcc $(CFLAGS) -c kapish.c
+	gcc  -c $(CFLAGS) kapish.c
 
 # DoublyLinkedList.o: DoublyLinkedList.c DoublyLinkedList.h
-# 	gcc $(CFLAGS) -c DoublyLinkedList.c
+# 	gcc  -c $(CFLAGS) DoublyLinkedList.c
 
 clean:
 	rm -rf *.o kapish
