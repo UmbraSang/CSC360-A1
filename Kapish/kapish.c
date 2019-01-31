@@ -15,10 +15,10 @@ pid_t pid;
 char* intakeLine() {
 	char* line = NULL;
 	size_t buffsize = 0;
-	getline(&line, &buffsize, stdin);
-	// if(*line == "^D"){
-	// 	exit(0);
-	// }
+	size_t ended = getline(&line, &buffsize, stdin);
+	if(ended==-1){
+		exit(0);
+	}
 	return line;
 }
 
@@ -80,19 +80,18 @@ int cngDir(char **args){
 }
 
 void INThandler(int sig){
-	char yn;
 
-	signal(sig, SIG_IGN);
+	signal(sig, SIGINT);
 	if(getpid()==parentID){
 		kill(pid, SIGKILL);
-	}else{
-		printf("\nReady to quit? [y/n]");
-		yn = getchar();
-		if(yn == 'y' || yn == 'Y'){
-			exit(0);
-		} else {
-			signal(SIGINT, INThandler);
-		}
+	// }else{
+	// 	printf("\nReady to quit? [y/n]");
+	// 	char yn = getchar();
+	// 	if(yn == 'y' || yn == 'Y'){
+	// 		exit(0);
+	// 	} else {
+	// 		signal(SIGINT, INThandler);
+	// 	}
 	}
 }
 
