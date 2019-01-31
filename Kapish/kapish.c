@@ -8,13 +8,6 @@
 
 #include "DoublyLinkedList.h"
 
-#define TOKEN_BUFFER_SIZE 64
-
-void setEnv(char **args);
-void unsetEnv(char **args);
-int exitShell(char **args);
-int launch(char** args);
-
 char* intakeLine() {
 	char* line = NULL;
 	size_t buffsize = 0;
@@ -107,7 +100,7 @@ void argsReader() {
 }
 
 int launch(char** args){
-	pid_t pid, wpid;
+	pid_t pid;
 	int status;
 
 	pid = fork();
@@ -123,7 +116,7 @@ int launch(char** args){
 	} else{
 		//parent part
 		do {
-      		wpid = waitpid(pid, &status, WUNTRACED);
+      		waitpid(pid, &status, WUNTRACED);
     	} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 	}
 	return 1;
