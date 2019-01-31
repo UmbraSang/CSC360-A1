@@ -107,7 +107,7 @@ void argsReader() {
 }
 
 int launch(char** args){
-	pid_t pid;
+	pid_t pid, wpid;
 	int status;
 
 	pid = fork();
