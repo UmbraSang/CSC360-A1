@@ -36,12 +36,14 @@ int numBuiltIn(){
     return sizeof(builtInList)/sizeof(char *);
 }
 
-void setEnv(char **args){
+int setEnv(char **args){
 	printf("setEnv");
+	return 1;
 }
 
-void unsetEnv(char **args){
+int unsetEnv(char **args){
 	printf("unsetEnv");
+	return 1;
 }
 
 int exitShell(char **args){
@@ -102,7 +104,7 @@ int kapexec(char** args) {
 	}
 	for(i=0; i<numBuiltIn(); i++){
 		if(strcmp(args[0], builtInList[i])==0){
-			return builtInFuncSwitch(args[0], i);
+			return builtInFuncSwitch(args, i);
 		}
 	}
 	return launch(args);
