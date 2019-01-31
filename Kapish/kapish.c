@@ -10,6 +10,7 @@
 #include "DoublyLinkedList.c"
 
 pid_t parentID;
+pid_t pid;
 
 char* intakeLine() {
 	char* line = NULL;
@@ -82,19 +83,19 @@ void INThandler(int sig){
 	char yn;
 
 	signal(sig, SIG_IGN);
-	if(getpid()!=parentID){
-		printf("Ready to quit? [y/n]");
-		yn = getchar();
-		if(yn == 'y' || yn == 'Y'){
-			exit(0);
-		} else {
-			signal(SIGINT, INThandler);
-		}
+	if(getpid()==parentID){
+		kill(pid, SIGKILL)
+		// printf("\nReady to quit? [y/n]");
+		// yn = getchar();
+		// if(yn == 'y' || yn == 'Y'){
+		// 	exit(0);
+		// } else {
+		// 	signal(SIGINT, INThandler);
+		// }
 	}
 }
 
 int launch(char** args){
-	pid_t pid;
 	int status;
 	parentID = getpid();
 
