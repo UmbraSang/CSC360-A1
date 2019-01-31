@@ -164,12 +164,11 @@ void kapishRC(){
 	FILE *rcfile = fopen(".kapishrc", "r");
 	char line[512];
 	struct List* args;
-	int status;
 
 	while(fgets(line, sizeof(line), rcfile)){
 		printf("%s", line);
 		args = getTokens(line);
-		status = kapexec(listToArray(args));
+		kapexec(listToArray(args));
 		memset(line, '\0', sizeof(char)*512);
 		free(args);
 	}
@@ -180,6 +179,8 @@ void argsReader() {
 	char* input;
 	struct List* args;
 	int status;
+
+	kapishRC();
 
 	do{
 		printf("? ");
