@@ -58,7 +58,7 @@ int unsetEnv(char **args){
 		printf("Too few arguments.\n");
 	} else {
 		unsetenv(args[1]);
-		printf("Envrioment Variable removed.\n");
+		printf("Enviroment Variable removed.\n");
 	}
 	return 1;
 }
@@ -145,8 +145,7 @@ int kapexec(char** args) {
 	return launch(args);
 }
 
-char** listToArray(struct List* list){
-	char** arr = malloc(list->length * sizeof(char*));
+char** listToArray(struct List* list, char** arr){	
 	int i = 0;
 	while(list->head){
 		arr[i] = pop(list);
@@ -183,6 +182,7 @@ void argsReader() {
 	char* input;
 	struct List* args;
 	int status;
+	char** arr;
 
 	kapishRC();
 
@@ -191,10 +191,12 @@ void argsReader() {
 		input = intakeLine();
 		args = getTokens(input);
 		//testPrint(args);
-		status = kapexec(listToArray(args));
+		arr = malloc(args->length * sizeof(char*));
+		status = kapexec(listToArray(args, arr));
 
 		free(input);
 		free(args);
+		free(arr);
 	} while (status);
 }
 
