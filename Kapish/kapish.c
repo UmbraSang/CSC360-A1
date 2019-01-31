@@ -26,19 +26,19 @@ struct List* getTokens(char* input) {
 }
 
 char* builtInList[] = {
-        "setenv",
-        "unsetenv",
-        "exit"
+    "setenv",
+    "unsetenv",
+    "exit"
 };
 
 int (*builtInFunc[])(char **) = {
-        &setEnv,
-        &unsetEnv,
-        &exitShell
+    &setEnv,
+    &unsetEnv,
+    &exitShell
 };
 
 int numBuiltIn(){
-        return sizeof(builtInList)/sizeof(char *);
+    return sizeof(builtInList)/sizeof(char *);
 }
 
 void setEnv(char **args){
