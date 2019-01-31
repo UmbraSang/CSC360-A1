@@ -85,13 +85,14 @@ void INThandler(int sig){
 	signal(sig, SIG_IGN);
 	if(getpid()==parentID){
 		kill(pid, SIGKILL);
-		// printf("\nReady to quit? [y/n]");
-		// yn = getchar();
-		// if(yn == 'y' || yn == 'Y'){
-		// 	exit(0);
-		// } else {
-		// 	signal(SIGINT, INThandler);
-		// }
+	}else{
+		printf("\nReady to quit? [y/n]");
+		yn = getchar();
+		if(yn == 'y' || yn == 'Y'){
+			exit(0);
+		} else {
+			signal(SIGINT, INThandler);
+		}
 	}
 }
 
