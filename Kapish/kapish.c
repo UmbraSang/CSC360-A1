@@ -76,7 +76,7 @@ int cngDir(char **args){
 void INThandler(int sig){
 	char yn;
 
-	signal(sig, sig_IGN);
+	signal(sig, SIG_IGN);
 	printf("Ready to quit? [y/n]");
 
 	yn = getchar();
