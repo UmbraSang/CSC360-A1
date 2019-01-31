@@ -13,6 +13,7 @@
 void setEnv(char **args);
 void unsetEnv(char **args);
 int exitShell(char **args);
+int launch(char** args);
 
 char* intakeLine() {
 	char* line = NULL;
@@ -121,7 +122,9 @@ int launch(char** args){
 		perror("bad fork\n");
 	} else{
 		//parent part
-		//wpid = wait();
+		do {
+      		wpid = waitpid(pid, &status, WUNTRACED);
+    	} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 	}
 	return 1;
 }
