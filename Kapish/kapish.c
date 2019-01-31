@@ -84,14 +84,6 @@ void INThandler(int sig){
 	if(sig ==SIGINT){
 		if(getpid()==parentID){
 			kill(pid, SIGKILL);
-		// }else{
-		// 	printf("\nReady to quit? [y/n]");
-		// 	char yn = getchar();
-		// 	if(yn == 'y' || yn == 'Y'){
-		// 		exit(0);
-		// 	} else {
-		// 		signal(SIGINT, INThandler);
-		// 	}
 		}
 	}
 }
@@ -166,6 +158,21 @@ char** listToArray(struct List* list){
 void testPrint(struct List* args){
 	printList(args);
 	printListRev(args);
+}
+
+void kapishRC(){
+	FILE *rcfile = fopen(".kapishrc", "r");
+	char line[512];
+	struct List* args;
+
+	while(fgets(line, sizeof(line), rcfile)){
+		printf("%s", line);
+		args = getTokens(input);
+		status = kapexec(listToArray(args));
+		memset(line, "\0", 512);
+		free(args);
+	}
+	fclose(rcfile);
 }
 
 void argsReader() {
