@@ -53,6 +53,30 @@ int exitShell(char **args){
 	return 0;
 }
 
+int launch(char** args){
+	pid_t pid;
+	int status;
+
+	pid = fork();
+	if(pid==0){
+		//child part
+		if(execvp(args[0], args)==-1){
+			perror("failed exec() call\n");
+		}
+		exit(EXIT_FAILURE);
+	} else if (pid < 0){
+		//error part
+		perror("bad fork\n");
+	} else{
+		//parent part
+		do {
+      		waitpid(pid, &status, WUNTRACED);
+    	} while (!WIFEXITED(status) && !WIFSIGNALED(status));
+	}
+	return 1;
+}
+
+
 int kapexec(char** args) {
 	int i;
 	if(args[0] == NULL){
@@ -97,29 +121,6 @@ void argsReader() {
 		free(input);
 		free(args);
 	} while (status);
-}
-
-int launch(char** args){
-	pid_t pid;
-	int status;
-
-	pid = fork();
-	if(pid==0){
-		//child part
-		if(execvp(args[0], args)==-1){
-			perror("failed exec() call\n");
-		}
-		exit(EXIT_FAILURE);
-	} else if (pid < 0){
-		//error part
-		perror("bad fork\n");
-	} else{
-		//parent part
-		do {
-      		waitpid(pid, &status, WUNTRACED);
-    	} while (!WIFEXITED(status) && !WIFSIGNALED(status));
-	}
-	return 1;
 }
 
 int main(int argc, char **argv) {
