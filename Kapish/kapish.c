@@ -162,17 +162,19 @@ void testPrint(struct List* args){
 
 void kapishRC(){
 	FILE *rcfile = fopen(".kapishrc", "r");
-	char line[512];
-	struct List* args;
+	if(rcfile){
+		char line[512];
+		struct List* args;
 
-	while(fgets(line, sizeof(line), rcfile)){
-		printf("%s", line);
-		args = getTokens(line);
-		kapexec(listToArray(args));
-		memset(line, '\0', sizeof(char)*512);
-		free(args);
+		while(fgets(line, sizeof(line), rcfile)){
+			printf("%s", line);
+			args = getTokens(line);
+			kapexec(listToArray(args));
+			memset(line, '\0', sizeof(char)*512);
+			free(args);
+		}
+		fclose(rcfile);
 	}
-	fclose(rcfile);
 }
 
 void argsReader() {
