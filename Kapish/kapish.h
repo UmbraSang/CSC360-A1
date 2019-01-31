@@ -6,3 +6,4 @@ int launch(char** args);
 void setEnv(char **args);
 void unsetEnv(char **args);
 int exitShell(char **args);
+int cngDir(char **args);

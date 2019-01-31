@@ -28,13 +28,8 @@ struct List* getTokens(char* input) {
 char* builtInList[] = {
     "setenv",
     "unsetenv",
-    "exit"
-};
-
-int (*builtInFunc[])(char **) = {
-    &setEnv,
-    &unsetEnv,
-    &exitShell
+    "exit",
+	"cd"
 };
 
 int numBuiltIn(){
@@ -51,6 +46,10 @@ void unsetEnv(char **args){
 
 int exitShell(char **args){
 	return 0;
+}
+
+int cngDir(char **args){
+	return 1;
 }
 
 int launch(char** args){
@@ -76,6 +75,24 @@ int launch(char** args){
 	return 1;
 }
 
+int builtInFuncSwitch(char** args, int x){
+	int i;
+	switch(x){
+		case 0:
+			setEnv(args);
+			break;
+		case 1:
+			unsetEnv(args);
+			break;
+		case 2:
+			exitShell(args);
+			break;
+		case 3:
+			cngDir(args);
+			break;
+	}
+}
+
 
 int kapexec(char** args) {
 	int i;
@@ -84,7 +101,7 @@ int kapexec(char** args) {
 	}
 	for(i=0; i<numBuiltIn(); i++){
 		if(strcmp(args[0], builtInList[i])==0){
-			return (*builtInFunc[i])(args);
+			return builtInFuncSwitch(args[0], i);
 		}
 	}
 	return launch(args);
