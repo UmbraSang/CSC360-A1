@@ -7,3 +7,4 @@ int setEnv(char **args);
 int unsetEnv(char **args);
 int exitShell(char **args);
 int cngDir(char **args);
+void INThandler(int sig);

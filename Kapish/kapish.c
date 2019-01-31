@@ -73,6 +73,20 @@ int cngDir(char **args){
 	return 1;
 }
 
+void INThandler(int sig){
+	char yn;
+
+	signal(sig, sig_IGN);
+	printf("Ready to quit? [y/n]");
+
+	yn = getchar();
+	if(yn == 'y' || yn == 'Y'){
+		exit(0);
+	} else {
+		signal(SIGINT, INThandler);
+	}
+}
+
 int launch(char** args){
 	pid_t pid;
 	int status;
@@ -129,21 +143,6 @@ int kapexec(char** args) {
 	}
 	return launch(args);
 }
-
-void INThandler(int sig){
-	char yn;
-
-	signal(sig, sig_IGN);
-	printf("Ready to quit? [y/n]");
-
-	yn = getchar();
-	if(yn == 'y' || yn == 'Y'){
-		exit(0);
-	} else {
-		signal(SIGINT, INThandler);
-	}
-}
-
 
 char** listToArray(struct List* list){
 	char** arr = malloc(list->length * sizeof(char*));
