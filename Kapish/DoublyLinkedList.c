@@ -82,7 +82,8 @@ void add(int x, struct Node* newNode, struct List* nodeList) {
 	}
 	else {
 		struct Node* curr = nodeList->head;
-		for (int i = 0; i < x; i++) {
+		int i;
+        for (i = 0; i < x; i++) {
 			curr = curr->next;
 		}
 		struct Node* currPrev = curr->prev;

@@ -6,7 +6,7 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
-#include "DoublyLinkedList.h"
+#include "DoublyLinkedList.c"
 
 char* intakeLine() {
 	char* line = NULL;
