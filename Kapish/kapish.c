@@ -38,12 +38,12 @@ int numBuiltIn(){
 
 int setEnv(char **args){
 	printf("setEnv");
-	return 1;
+	return 0;
 }
 
 int unsetEnv(char **args){
 	printf("unsetEnv");
-	return 1;
+	return 0;
 }
 
 int exitShell(char **args){
@@ -51,7 +51,7 @@ int exitShell(char **args){
 }
 
 int cngDir(char **args){
-	return 1;
+	return 0;
 }
 
 int launch(char** args){
@@ -135,7 +135,7 @@ void argsReader() {
 		printf("> ");
 		input = intakeLine();
 		args = getTokens(input);
-		testPrint(args);
+		//testPrint(args);
 		status = kapexec(listToArray(args));
 
 		free(input);
