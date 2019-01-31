@@ -80,7 +80,7 @@ int cngDir(char **args){
 }
 
 void INThandler(int sig){
-	//char yn;
+	char yn;
 
 	signal(sig, SIG_IGN);
 	if(getpid()==parentID){
