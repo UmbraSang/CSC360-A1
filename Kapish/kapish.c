@@ -78,7 +78,7 @@ int launch(char** args){
 	int status;
 
 	pid = fork();
-	signal(sig, sig_IGN);
+	signal(SIGINT, INThandler);
 	if(pid==0){
 		//child part
 		if(execvp(args[0], args)==-1){
