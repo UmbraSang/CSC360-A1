@@ -81,17 +81,18 @@ int cngDir(char **args){
 
 void INThandler(int sig){
 
-	signal(sig, SIGINT);
-	if(getpid()==parentID){
-		kill(pid, SIGKILL);
-	// }else{
-	// 	printf("\nReady to quit? [y/n]");
-	// 	char yn = getchar();
-	// 	if(yn == 'y' || yn == 'Y'){
-	// 		exit(0);
-	// 	} else {
-	// 		signal(SIGINT, INThandler);
-	// 	}
+	if(sig ==SIGINT){
+		if(getpid()==parentID){
+			kill(pid, SIGKILL);
+		// }else{
+		// 	printf("\nReady to quit? [y/n]");
+		// 	char yn = getchar();
+		// 	if(yn == 'y' || yn == 'Y'){
+		// 		exit(0);
+		// 	} else {
+		// 		signal(SIGINT, INThandler);
+		// 	}
+		}
 	}
 }
 
