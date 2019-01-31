@@ -12,4 +12,4 @@ DoublyLinkedList.o: DoublyLinkedList.c DoublyLinkedList.h
 	gcc $(CFLAGS) -c DoublyLinkedList.c
 
 clean:
-	rm -rf *.o kapish DoublyLinkedList
+	rm -rf *.o kapish
