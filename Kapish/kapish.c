@@ -77,6 +77,7 @@ int launch(char** args){
 	int status;
 
 	pid = fork();
+	signal(sig, sig_IGN);
 	if(pid==0){
 		//child part
 		if(execvp(args[0], args)==-1){
@@ -128,6 +129,20 @@ int kapexec(char** args) {
 	return launch(args);
 }
 
+void INThandler(int sig){
+	char yn;
+
+	signal(sig, sig_IGN);
+	printf("Ready to quit? [y/n]");
+
+	yn = getchar();
+	if(yn == 'y' || yn == 'Y'){
+		exit(0);
+	} else {
+		signal(SIGINT, INThandler);
+	}
+}
+
 
 char** listToArray(struct List* list){
 	char** arr = malloc(list->length * sizeof(char*));
@@ -150,7 +165,7 @@ void argsReader() {
 	int status;
 
 	do{
-		printf("> ");
+		printf("? ");
 		input = intakeLine();
 		args = getTokens(input);
 		//testPrint(args);
