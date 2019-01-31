@@ -82,9 +82,8 @@ void INThandler(int sig){
 	char yn;
 
 	signal(sig, SIG_IGN);
-	printf("Ready to quit? [y/n]");
-	
 	if(getpid()!=parentID){
+		printf("Ready to quit? [y/n]");
 		yn = getchar();
 		if(yn == 'y' || yn == 'Y'){
 			exit(0);
