@@ -15,9 +15,9 @@ char* intakeLine() {
 	char* line = NULL;
 	size_t buffsize = 0;
 	getline(&line, &buffsize, stdin);
-	if(*line == "^D"){
-		exit(0);
-	}
+	// if(*line == "^D"){
+	// 	exit(0);
+	// }
 	return line;
 }
 
