@@ -166,13 +166,16 @@ void kapishRC(){
 	if(rcfile){
 		char line[512];
 		struct List* args;
+		char** arr;
 
 		while(fgets(line, sizeof(line), rcfile)){
 			printf("%s", line);
 			args = getTokens(line);
-			kapexec(listToArray(args));
+			arr = malloc(args->length * sizeof(char*));
+			kapexec(listToArray(args, arr));
 			memset(line, '\0', sizeof(char)*512);
 			free(args);
+			free(arr);
 		}
 		fclose(rcfile);
 	}

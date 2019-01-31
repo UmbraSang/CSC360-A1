@@ -8,3 +8,4 @@ int unsetEnv(char **args);
 int exitShell(char **args);
 int cngDir(char **args);
 void INThandler(int sig);
+char** listToArray(struct List* list, char** arr);
