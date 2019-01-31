@@ -79,18 +79,19 @@ int builtInFuncSwitch(char** args, int x){
 	int i;
 	switch(x){
 		case 0:
-			setEnv(args);
+			i = setEnv(args);
 			break;
 		case 1:
-			unsetEnv(args);
+			i = unsetEnv(args);
 			break;
 		case 2:
-			exitShell(args);
+			i = exitShell(args);
 			break;
 		case 3:
-			cngDir(args);
+			i = cngDir(args);
 			break;
 	}
+	return i;
 }
 
 
