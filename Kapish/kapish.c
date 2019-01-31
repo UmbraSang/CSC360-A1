@@ -161,7 +161,7 @@ void testPrint(struct List* args){
 }
 
 void kapishRC(){
-	FILE *rcfile = fopen(".kapishrc", "r");
+	FILE *rcfile = fopen("~/.kapishrc", "r");
 	if(rcfile){
 		char line[512];
 		struct List* args;
