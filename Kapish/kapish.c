@@ -37,21 +37,39 @@ int numBuiltIn(){
 }
 
 int setEnv(char **args){
-	printf("setEnv");
-	return 0;
+	if(args[1]==NULL || args[2]==NULL){
+		printf("Too few arguments.\n");
+	} else{
+		setenv(args[1], args[2], 1);
+		printf("Envrioment Variable set.\n");
+	}
+	return 1;
 }
 
 int unsetEnv(char **args){
-	printf("unsetEnv");
-	return 0;
+	if(args[1]==NULL){
+		printf("Too few arguments.\n");
+	} else {
+		unsetenv(args[1]);
+		printf("Envrioment Variable removed.\n");
+	}
+	return 1;
 }
 
 int exitShell(char **args){
+	printf("Killing shell.\n");
 	return 0;
 }
 
 int cngDir(char **args){
-	return 0;
+	if (args[1]==NULL){
+		chdir(getenv("HOME"));
+		printf("Welcome to HOME directory.\n");
+	}else{
+		chdir(args[1]);
+		printf("Welcome to %s directory.\n", args[1]);
+	}
+	return 1;
 }
 
 int launch(char** args){
