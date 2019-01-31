@@ -162,7 +162,8 @@ void testPrint(struct List* args){
 
 void kapishRC(){
 	char* homeDir = getenv("HOME");
-	FILE *rcfile = fopen(strncat(homeDir, "/.kapishrc"), "r");
+	char* fileName = "/.kapishrc";
+	FILE *rcfile = fopen(strncat(homeDir, fileName, strlen(homeDir)+strlen(fileName)+1), "r");
 	if(rcfile){
 		char line[512];
 		struct List* args;
